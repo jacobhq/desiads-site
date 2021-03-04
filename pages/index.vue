@@ -1,72 +1,85 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        nuxtjs
-      </h1>
-      <h2 class="subtitle">
-        My astonishing Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+      <v-app-bar flat>
+          <v-app-bar-title>Desiads</v-app-bar-title>
+          <v-spacer></v-spacer>
+          <v-btn text color="primary">Sign up</v-btn>
+      </v-app-bar>
+      <header>
+          <div class="center">
+            <h1>Desiads</h1>
+            <small>Minimalist ads that aren't spoonfed down the customers throat</small>
+            <div class="cta-btns">
+                <v-btn color="primary" depressed>Sign up</v-btn>
+                <v-btn color="primary" depressed text href="#what">Who wants that</v-btn>
+            </div>
+          </div>
+      </header>
+      <section>
+          <div class="center2">
+              <h1>This is a Desiad</h1>
+              <br>
+              <a class="ad" :href="ad.url" target="_blank">
+                  <v-card flat outlined width="200" v-ripple>
+                    <v-card-title>{{ ad.name }}</v-card-title>
+                    <v-card-subtitle>{{ ad.description }}</v-card-subtitle>
+                    <v-card-text style="margin-top: 5px;">ADS VIA DESIADS</v-card-text>
+                </v-card>
+              </a>
+              <br>
+              It can look however you want!
+          </div>
+      </section>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
-  }
+    data() {
+        return {
+            ad: []
+        }
+    },
+    async fetch() {
+      this.ad = await fetch(
+        'https://api.ads.desica.uk/api/ad'
+      ).then(res => res.json())
+    }
 }
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.center {
+    position: absolute;
+    top: 27.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.center2 {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+header {
+    height: 90vh;
 }
 
-.links {
-  padding-top: 15px;
+.cta-btns {
+    margin-top: 10px;
+}
+
+section {
+    height: 100vh;
+}
+
+.ad {
+    display: block;
+    position: relative;
+    text-decoration: none;
 }
 </style>
