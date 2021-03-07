@@ -3,14 +3,14 @@
       <v-app-bar flat>
           <v-app-bar-title>Desiads</v-app-bar-title>
           <v-spacer></v-spacer>
-          <v-btn text color="primary">Sign up</v-btn>
+          <v-btn text color="primary" to="/order">Sign up</v-btn>
       </v-app-bar>
       <header>
           <div class="center">
             <h1>Desiads</h1>
             <small>Minimalist ads that aren't spoonfed down the customers throat</small>
             <div class="cta-btns">
-                <v-btn color="primary" depressed>Sign up</v-btn>
+                <v-btn color="primary" depressed to="/order">Sign up</v-btn>
                 <v-btn color="primary" depressed text href="#what">Who wants that</v-btn>
             </div>
           </div>

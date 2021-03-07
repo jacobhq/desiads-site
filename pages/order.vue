@@ -2,6 +2,8 @@
   <v-card
     class="mx-auto my-auto"
     max-width="1000"
+    :loading="loading"
+    :disabled="loading"
   >
     <v-card-title class="title font-weight-regular justify-space-between">
       <div>
@@ -24,7 +26,7 @@
     <v-container>
       <v-row>
         <v-col
-          v-for="item in lineItems"
+          v-for="(item, index) in lineItems"
           :key="item"
           cols="12"
           md="4"
@@ -37,8 +39,8 @@
               width="20vw"
               @click="toggle"
             >
-            <h3 class="headline flex-grow-1 text-center" v-if="!active">{{item.name}}</h3>
-            <h3 class="headline flex-grow-1 text-center" style="color: white;" v-if="active">{{item.name}}</h3>
+            <h3 class="headline flex-grow-1 text-center" v-if="!active">{{names[index]}}</h3>
+            <h3 class="headline flex-grow-1 text-center" style="color: white;" v-if="active">{{names[index]}}</h3>
             </v-card>
           </v-item>
         </v-col>
@@ -60,13 +62,23 @@
         Back
       </v-btn>
       <v-spacer></v-spacer>
+      <stripe-checkout
+      ref="checkoutRef"
+      mode="subscription"
+      :pk="publishableKey"
+      :line-items="lineItems"
+      :success-url="successURL"
+      :cancel-url="cancelURL"
+      @loading="v => loading = true"
+    />
       <v-btn
-        :disabled="step === 3"
+        :disabled="selected === undefined"
         color="primary"
         depressed
-        @click="step++"
+        @click="buy"
+        :loading="loading"
       >
-        Next
+        Buy
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -83,15 +95,16 @@ export default {
     return {
       step: 1,
       loading: false,
-      selected: [1],
+      selected: undefined,
+      names: [
+        'Small text', 'Big banner',
+      ],
       lineItems: [
         {
-          name: 'Small text',
           price: 'price_1IST6FBs47PjhYlFmGceTUJ9', // The id of the recurring price you created in your Stripe dashboard
           quantity: 1,
         },
         {
-          name: 'Big banner',
           price: 'price_1IST4oBs47PjhYlFaaodshIP', // The id of the recurring price you created in your Stripe dashboard
           quantity: 1,
         },
@@ -110,7 +123,12 @@ export default {
       },
     },
   methods: {
-    subscribe () {
+    buy () {
+      if (this.selected === 1) {
+          this.lineItems.shift()
+      } else {
+          this.lineItems.pop()
+      }
       // You will be redirected to Stripe's secure checkout page
       this.$refs.checkoutRef.redirectToCheckout();
     },
