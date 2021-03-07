@@ -10,6 +10,7 @@
     "start": "nuxt start"
   },
   "dependencies": {
+    "@vue-stripe/vue-stripe": "^4.1.5",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
