@@ -19,6 +19,15 @@ export default {
    ** Customize the progress-bar color
    */
   loading: { color: '#a239c5' },
+  vuetify: {
+    theme: {
+        themes: {
+            light: {
+                primary: '#a239c5',
+            }
+        }
+    }
+},
   /*
    ** Global CSS
    */
