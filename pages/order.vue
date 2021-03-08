@@ -22,7 +22,7 @@
     <v-window v-model="step">
       <v-window-item :value="1">
         <v-card-text>
-          <v-item-group v-model="selected">
+          <v-item-group v-model="selected" multiple>
             <v-container>
               <v-row>
                 <v-col
@@ -86,7 +86,7 @@
         @loading="(v) => (loading = true)"
       />
       <v-btn
-        :disabled="selected === undefined"
+        :disabled="selected.length === 0"
         color="primary"
         depressed
         @click="buy"
@@ -110,7 +110,7 @@ export default {
     return {
       step: 1,
       loading: false,
-      selected: undefined,
+      selected: [],
       names: ["Small text", "Small banner"],
       lineItems: [
         {
@@ -140,10 +140,12 @@ export default {
   },
   methods: {
     buy() {
-      if (this.selected === 1) {
-        this.lineItems.shift();
-      } else {
-        this.lineItems.pop();
+      if (this.selected.length != 0) {
+        if (this.selected === 1) {
+          this.lineItems.shift();
+        } else {
+          this.lineItems.pop();
+        }
       }
       // You will be redirected to Stripe's secure checkout page
       this.$refs.checkoutRef.redirectToCheckout();
