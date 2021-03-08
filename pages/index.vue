@@ -1,7 +1,7 @@
 <template>
   <div>
       <v-app-bar flat>
-          <v-app-bar-title>Desiads</v-app-bar-title>
+          <v-toolbar-title>Desiads</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn text color="primary" to="/order">Sign up</v-btn>
       </v-app-bar>
