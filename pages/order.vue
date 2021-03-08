@@ -109,8 +109,8 @@ export default {
           quantity: 1,
         },
       ],
-      successURL: 'https://3000-cyan-wolf-oardzjl5.ws-eu03.gitpod.io/yes',
-      cancelURL: 'https://3000-cyan-wolf-oardzjl5.ws-eu03.gitpod.io/no',
+      successURL: 'https://ads.desica.uk/thanks',
+      cancelURL: 'https://ads.desica.uk/',
     };
   },
   computed: {
