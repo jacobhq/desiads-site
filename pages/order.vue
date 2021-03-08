@@ -111,7 +111,7 @@ export default {
       step: 1,
       loading: false,
       selected: undefined,
-      names: ["Small text", "Big banner"],
+      names: ["Small text", "Small banner"],
       lineItems: [
         {
           price: "price_1IST6FBs47PjhYlFmGceTUJ9", // The id of the recurring price you created in your Stripe dashboard
