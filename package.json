@@ -1,8 +1,8 @@
 {
-  "name": "nuxtjs",
+  "name": "Desiads",
   "version": "1.0.0",
-  "description": "My astonishing Nuxt.js project",
-  "author": "msweeneydev",
+  "description": "The website for the Desica ads network",
+  "author": "Desica",
   "private": true,
   "scripts": {
     "dev": "nuxt",
