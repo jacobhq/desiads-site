@@ -140,7 +140,7 @@ export default {
   },
   methods: {
     buy() {
-      if (this.selected.length > 1) {
+      if (this.selected.length = 1) {
         if (this.selected === 1) {
           this.lineItems.shift();
         } else {
